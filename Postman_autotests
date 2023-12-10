@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "0177c854-65f5-4d56-b95f-249044350fe5",
+		"name": "Starwars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29380960"
+	},
+	"item": [
+		{
+			"name": "Planet 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Diameter is 10466\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.diameter).to.eql(\"10466\");\r",
+							"});\r",
+							"pm.test(\"It is a Tatooine\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Tatooine\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Tatooine\");\r",
+							"});   \r",
+							" pm.test(\"The length of residents array is greater than zero\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.residents.length).to.be.greaterThan(0, \"Residents array should not be empty\");\r",
+							" });\r",
+							" pm.test(\"The length of films array is equal 5\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.films.length).to.be.equal(5, \"Films array equals 5\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/api/planets/1/"
+			},
+			"response": []
+		},
+		{
+			"name": "People 10 \"Obi-Wan\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Is a human\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.species).to.contain(\"https://swapi.py4e.com/api/species/1/\");\r",
+							"});\r",
+							"pm.test(\"Number of starships\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.starships.length).to.be.equal(5, \"Starships array equals 5\");\r",
+							"});\r",
+							"pm.test(\"Homeworld\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.homeworld).not.to.be.equal(\"https://swapi.py4e.com/api/films/1/\");\r",
+							"});\r",
+							"pm.test(\"Schema is valid\", function () {\r",
+							"    var schema = {\r",
+							"        type: \"object\",\r",
+							"        properties: {\r",
+							"            name: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            height: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            mass: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            hair_color: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            skin_color: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            eye_color: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            birth_year: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            gender: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            homeworld: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            films: {\r",
+							"                type: \"array\"\r",
+							"            },\r",
+							"            species: {\r",
+							"                type: \"array\"\r",
+							"            },\r",
+							"            vehicles: {\r",
+							"                type: \"array\"\r",
+							"            },\r",
+							"            starships: {\r",
+							"                type: \"array\"\r",
+							"            },\r",
+							"            created: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            edited: {\r",
+							"                type: \"string\"\r",
+							"            },\r",
+							"            url: {\r",
+							"                type: \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        required: [\"name\", \"height\", \"mass\", \"hair_color\", \"skin_color\", \"eye_color\", \"birth_year\", \"gender\", \"homeworld\", \"films\", \"species\", \"vehicles\", \"starships\", \"created\", \"edited\", \"url\"]\r",
+							"    };\r",
+							"\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is within acceptable range\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000, \"Response time should be less than 1000ms\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/api/people/10/"
+			},
+			"response": []
+		},
+		{
+			"name": "Planet 7 \"Endor\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Diameter is 4900\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.diameter).to.eql(\"4900\");\r",
+							"});\r",
+							"pm.test(\"It is a Endor\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Endor\");\r",
+							"});   \r",
+							" pm.test(\"The length of residents array is greater than zero\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.residents.length).to.be.greaterThan(0, \"Residents array should not be empty\");\r",
+							" });\r",
+							" pm.test(\"The length of films array is equal 1\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.films.length).to.be.equal(1, \"Films array equals 1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/api/planets/7/"
+			},
+			"response": []
+		},
+		{
+			"name": "Starship 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" pm.test(\"1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).not.to.be.equal(\"Fighter-class landing craft\");\r",
+							" });\r",
+							" pm.test(\"Only one film\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.films.length).to.be.not.greaterThan(1, \"There's only one film\");\r",
+							" });\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+							"});\r",
+							"pm.test(\"Время ответа меньше 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							" pm.test(\"Got zero pilots\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.pilots.length).to.be.equal(0, \"There's only one film\");\r",
+							" });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{host}}/api/starships/5/"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"value": "",
+			"type": "string"
+		}
+	]
+}
